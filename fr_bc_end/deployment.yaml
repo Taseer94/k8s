@@ -1,20 +1,27 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: flask-app
+  name: flask
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask-app
+      app: flask
   template:
     metadata:
       labels:
-        app: flask-app
+        app: flask
     spec:
       containers:
-        - name: flask-app
+        - name: flask
           image: flask-app
           ports:
             - containerPort: 5000
           imagePullPolicy: Never
+        - name: db
+          image: postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-configmap
