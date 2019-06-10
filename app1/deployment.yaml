@@ -14,10 +14,9 @@ spec:
     spec:
       containers:
         - name: flask
-          image: flask-app
+          image: taseer94/app
           ports:
             - containerPort: 5000
-          imagePullPolicy: Never
         - name: db
           image: postgres
           ports:
